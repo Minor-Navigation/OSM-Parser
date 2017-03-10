@@ -28,19 +28,30 @@ public class MongoDbOutput {
 
     public void addNodes(List<DBObject> records) {
         DBCollection nodes = db.getCollection("nodes");
+        nodes.ensureIndex(new BasicDBObject("id", 1), new BasicDBObject("unique", true));
+        nodes.ensureIndex(new BasicDBObject("loc", 1), new BasicDBObject("unique", false));
         nodes.insert(records);
     }
 
 	public void addWay(BasicDBObject record) {
 		// TODO Auto-generated method stub
 		DBCollection ways = db.getCollection("ways");
+		ways.ensureIndex(new BasicDBObject("id", 1), new BasicDBObject("unique", true));
 		ways.insert(record);
+		
+	}
+	
+	public DBCollection getWay() {
+		// TODO Auto-generated method stub
+		DBCollection ways = db.getCollection("ways");
+		return ways;
 		
 	}
 
 	public void addRelation(BasicDBObject record) {
 		// TODO Auto-generated method stub
 		DBCollection relations = db.getCollection("relations");
+		relations.ensureIndex(new BasicDBObject("id", 1), new BasicDBObject("unique", true));
 		relations.insert(record);
 	}
     

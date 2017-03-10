@@ -53,8 +53,9 @@ public class OsmXmlParser {
             if("node".equals(qName)) {
                 fillDefaults(attributes);
                 fillLoc(attributes);
-                record.append("ways", new LinkedList<Long>());
-                record.append("relations", new LinkedList<Long>());
+                record.append("adjacent", new LinkedList<Long>());
+                //record.append("ways", new LinkedList<Long>());
+                //record.append("relations", new LinkedList<Long>());
             } else if("nd".equals(qName)) {
                 ((List<Long>) record.get("nodes")).add(Long.valueOf(attributes.getValue("ref")));
             } else if("tag".equals(qName)) {
@@ -103,20 +104,25 @@ public class OsmXmlParser {
         }
 
         private void fillLoc(Attributes attributes) {
-            BasicDBObject twoD = new BasicDBObject();
-            twoD.append("lat", Float.parseFloat(attributes.getValue("lat")));
-            twoD.append("lon", Float.parseFloat(attributes.getValue("lon")));
-            record.append("loc", new BasicDBObject("loc", twoD));
+            //BasicDBObject twoD = new BasicDBObject();
+            //twoD.append("lat", Float.parseFloat(attributes.getValue("lat")));
+            //twoD.append("lon", Float.parseFloat(attributes.getValue("lon")));
+            List<Float> d = new LinkedList<Float>();
+            //Double d=1.0;
+            d.add(Float.parseFloat(attributes.getValue("lon")));
+            d.add(Float.parseFloat(attributes.getValue("lat")));
+            //record.append("loc", new BasicDBObject("loc", twoD));
+            record.append("loc", d);
         }
 
         private void fillDefaults(Attributes attributes) {
             record.append("id", Long.valueOf(attributes.getValue("id")));
-            record.append("timestamp", parseIsoTime(attributes.getValue("timestamp")));
+            //record.append("timestamp", parseIsoTime(attributes.getValue("timestamp")));
             record.append("tags", new BasicDBObject());
-            applyIfNotNull(attributes, "user");
-            applyNumIfNotNull(attributes, "uid");
-            applyNumIfNotNull(attributes, "version");
-            applyNumIfNotNull(attributes, "changeset");
+            //applyIfNotNull(attributes, "user");
+            //applyNumIfNotNull(attributes, "uid");
+            //applyNumIfNotNull(attributes, "version");
+            //applyNumIfNotNull(attributes, "changeset");
             
         }
 
