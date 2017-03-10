@@ -41,19 +41,6 @@ public class MongoDbOutput {
 		
 	}
 	
-	public DBCollection getWay() {
-		// TODO Auto-generated method stub
-		DBCollection ways = db.getCollection("ways");
-		return ways;
-		
-	}
-	public DBCollection getNodes() {
-		// TODO Auto-generated method stub
-		DBCollection ways = db.getCollection("nodes");
-		return ways;
-		
-	}
-
 	public void addRelation(BasicDBObject record) {
 		// TODO Auto-generated method stub
 		DBCollection relations = db.getCollection("relations");
@@ -61,4 +48,26 @@ public class MongoDbOutput {
 		relations.insert(record);
 	}
     
+	public DBCollection getWay() {
+		// TODO Auto-generated method stub
+		DBCollection ways = db.getCollection("ways");
+		return ways;
+		
+	}
+	
+	public DBCollection getNodes() {
+		// TODO Auto-generated method stub
+		DBCollection nodes = db.getCollection("nodes");
+		return nodes;
+		
+	}
+	
+	public DBCollection getRelations() {
+		// TODO Auto-generated method stub
+		DBCollection rel = db.getCollection("relations");
+		return rel;
+		
+	}
+
+	
 }
