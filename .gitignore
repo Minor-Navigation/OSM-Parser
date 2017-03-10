@@ -1,1 +1,4 @@
 /*.osm
+/bin/*
+/.classpath
+/.project
