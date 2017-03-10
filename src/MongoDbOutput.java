@@ -47,6 +47,12 @@ public class MongoDbOutput {
 		return ways;
 		
 	}
+	public DBCollection getNodes() {
+		// TODO Auto-generated method stub
+		DBCollection ways = db.getCollection("nodes");
+		return ways;
+		
+	}
 
 	public void addRelation(BasicDBObject record) {
 		// TODO Auto-generated method stub
