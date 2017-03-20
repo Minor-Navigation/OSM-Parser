@@ -29,7 +29,8 @@ public class MongoDbOutput {
     public void addNodes(List<DBObject> records) {
         DBCollection nodes = db.getCollection("nodes");
         nodes.ensureIndex(new BasicDBObject("id", 1), new BasicDBObject("unique", true));
-        nodes.ensureIndex(new BasicDBObject("loc", 1), new BasicDBObject("unique", false));
+        nodes.ensureIndex(new BasicDBObject("loc", "2d"), "geospacialIdx");
+
         nodes.insert(records);
     }
 
