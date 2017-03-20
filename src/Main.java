@@ -12,7 +12,7 @@ public class Main
         try {
             MongoDbOutput output = new MongoDbOutput();
             OsmXmlParser parser = new OsmXmlParser(output);
-            parser.parse("new-delhi_india.osm");
+            parser.parse("india-latest.osm");
             
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
@@ -22,5 +22,7 @@ public class Main
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        nodeAdj.startAdj();
     }
 }

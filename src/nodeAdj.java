@@ -63,9 +63,9 @@ public class nodeAdj {
 		
 	}
 
-	public static void main(String[] args) {
+	public static void startAdj() {
 		// TODO Auto-generated method stub
-
+		System.out.println("Adjacency List Creating");
 		MongoDbOutput output=null;
 		try {
             output = new MongoDbOutput();

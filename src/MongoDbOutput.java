@@ -19,7 +19,7 @@ public class MongoDbOutput {
     public MongoDbOutput() throws UnknownHostException {
         try {
             Mongo m = new Mongo( "localhost" , 27017 );
-            db = m.getDB( "osm" );
+            db = m.getDB( "osm_india" );
             
         } catch (MongoException e) {
             e.printStackTrace();
