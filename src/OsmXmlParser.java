@@ -54,7 +54,7 @@ public class OsmXmlParser {
                 fillDefaults(attributes);
                 fillLoc(attributes);
                 record.append("adjacent", new LinkedList<Long>());
-                //record.append("ways", new LinkedList<Long>());
+                record.append("way_ids", new LinkedList<Long>());
                 //record.append("relations", new LinkedList<Long>());
             } else if("nd".equals(qName)) {
                 ((List<Long>) record.get("nodes")).add(Long.valueOf(attributes.getValue("ref")));
@@ -104,14 +104,17 @@ public class OsmXmlParser {
         }
 
         private void fillLoc(Attributes attributes) {
-            //BasicDBObject twoD = new BasicDBObject();
+            BasicDBObject twoD = new BasicDBObject();
             //twoD.append("lat", Float.parseFloat(attributes.getValue("lat")));
             //twoD.append("lon", Float.parseFloat(attributes.getValue("lon")));
             List<Float> d = new LinkedList<Float>();
             //Double d=1.0;
             d.add(Float.parseFloat(attributes.getValue("lon")));
             d.add(Float.parseFloat(attributes.getValue("lat")));
+            twoD.append("type", "Point");
+            twoD.append("coordinates", d);
             //record.append("loc", new BasicDBObject("loc", twoD));
+            //record.append("loc", twoD);
             record.append("loc", d);
         }
 

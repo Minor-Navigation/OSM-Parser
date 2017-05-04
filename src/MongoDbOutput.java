@@ -19,7 +19,7 @@ public class MongoDbOutput {
     public MongoDbOutput() throws UnknownHostException {
         try {
             Mongo m = new Mongo( "localhost" , 27017 );
-            db = m.getDB( "osm_india" );
+            db = m.getDB( "osm_delhi3" );
             
         } catch (MongoException e) {
             e.printStackTrace();
@@ -29,7 +29,7 @@ public class MongoDbOutput {
     public void addNodes(List<DBObject> records) {
         DBCollection nodes = db.getCollection("nodes");
         nodes.ensureIndex(new BasicDBObject("id", 1), new BasicDBObject("unique", true));
-        nodes.ensureIndex(new BasicDBObject("loc", 1), new BasicDBObject("unique", false));
+        //nodes.ensureIndex(new BasicDBObject("loc", "2dsphere"), "geoJSON");
         nodes.insert(records);
     }
 
